@@ -98,7 +98,8 @@ class GridPlot(object):
         if event.type == pygame.QUIT:
           pygame.quit()
           quit()
-        elif event.type == pygame.KEYDOWN:
+        elif event.type == pygame.KEYDOWN and \
+             event.key == pygame.K_SPACE:
           done = True
 
       pygame.display.flip()
