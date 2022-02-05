@@ -30,7 +30,7 @@ Where the numbers in the matrix are represented as:
 * Path from the starting cell to destination cell (3)
  
 ### Pygame GUI
-The generated matrix is passed down to the Pygame module `grid_gui` and the GUI is automatically built based on the received information. Below is an example of the GUI.
+The generated matrix is passed down to the Pygame module `grid_gui` and the GUI is automatically built based on the received information. Below is an image of the GUI that is generated from the matrix output above.
 
 ![gui](/images/gui_01.png)
 
