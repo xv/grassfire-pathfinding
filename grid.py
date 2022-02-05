@@ -16,8 +16,8 @@ class Grid:
     self.rows = rows
     self.columns = columns
     self.obstacle_percentage = obstacle_percentage
-    self.start_cell = (start_cell[0] - 1, start_cell[1] - 1)
-    self.dest_cell = (dest_cell[0] - 1, dest_cell[1] - 1)
+    self.start_cell = start_cell
+    self.dest_cell = dest_cell
 
   @classmethod
   def init_from_user_input(cls):
@@ -26,16 +26,12 @@ class Grid:
     obstacles = prompts.get_ranged_int("Obstacles (%): ", 10, 20)
     start_cell = prompts.get_matrix_coords(
       "Starting cell (ROW, COL): ",
-      1, 1, 1, columns
+      0, rows - 1, 0, columns - 1
     )
     
-    # Greater than half the number of rows
-    dest_row_min = ceil(rows / 2) + 1 
-    # Greater than 2/3 of the number of columns
-    dest_col_min = Decimal((2 / 3) * columns).quantize(0, ROUND_HALF_UP) + 1
     dest_cell = prompts.get_matrix_coords(
       "Destination cell (ROW, COL): ",
-      dest_row_min, rows, dest_col_min, columns
+      0, rows - 1, 0, columns - 1
     )
     
     return cls(
@@ -72,5 +68,4 @@ class Grid:
     print("Generated a grid of size {}x{} and an obstacle percentage of {}% "
           "with a starting cell at {} and a destination cell at {}"
           .format(self.rows, self.columns, self.obstacle_percentage,
-                  (self.start_cell[0] + 1, self.start_cell[1] + 1), 
-                  (self.dest_cell[0] + 1, self.dest_cell[1] + 1)))
+                  self.start_cell, self.dest_cell))
