@@ -8,7 +8,14 @@ This program requires the packages `numpy` and `pygame` to be installed. You may
 > grassfire_env\Scripts\activate.bat
 > pip install -r requirements.txt
 ```
-Alternatively, consult the installation web pages for [numpy](https://numpy.org/install/) and [pygame](https://www.pygame.org/wiki/GettingStarted) for other installation options.
+
+#### POSIX (Bash):
+On Linux, you may need to install `python3-venv` beforehand.
+```
+$ python3 -m venv grassfire_env
+$ source grassfire_env/bin/activate
+$ pip install -r requirements.txt
+```
 
 Run
 ---
