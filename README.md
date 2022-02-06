@@ -1,9 +1,15 @@
 Dependencies
 ------------
-This program requires the libraries `numpy` and `pygame` to be installed. You may install these libraries using `pip` as follows:
+This program requires the packages `numpy` and `pygame` to be installed. You may install these packages with `pip` in Python 3's built-in virtual environment (venv) setup.
+
+Enter the commands below from within the project's directory.
+
+#### Windows (Command Prompt):
 ```
-$ pip install numpy
-$ pip install pygame
+> python -m venv grassfire_env
+> grassfire_env\Scripts\activate.bat
+> pip install -r requirements.txt
+> python main.py
 ```
 Alternatively, consult the installation web pages for [numpy](https://numpy.org/install/) and [pygame](https://www.pygame.org/wiki/GettingStarted) for other installation options.
 
