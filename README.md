@@ -1,21 +1,18 @@
 Dependencies
 ------------
-This program requires the packages `numpy` and `pygame` to be installed. You may install these packages with `pip` in Python 3's built-in virtual environment (venv) setup.
-
-Enter the commands below from within the project's directory.
+This program requires the packages `numpy` and `pygame` to be installed. You may install these packages with `pip` in Python 3's built-in virtual environment (venv) setup by entering the commands below from within the project's directory.
 
 #### Windows (Command Prompt):
 ```
 > python -m venv grassfire_env
 > grassfire_env\Scripts\activate.bat
 > pip install -r requirements.txt
-> python main.py
 ```
 Alternatively, consult the installation web pages for [numpy](https://numpy.org/install/) and [pygame](https://www.pygame.org/wiki/GettingStarted) for other installation options.
 
 Run
 ---
-Simply run `main.py` in a terminal to start the program and provide parameters via input. You may alternatively modify the source code file to comment out the line that invokes `Grid.init_from_user_input()` and manually construct the `Grid` class parameters as you see fit.
+Simply run `main.py` in a terminal to start the program and provide parameters via input as prompted. You may alternatively modify the source code file to comment out the line that invokes `Grid.init_from_user_input()` and manually construct the `Grid` class parameters as you see fit.
 
 The terminal outputs a matrix like:
 ```
