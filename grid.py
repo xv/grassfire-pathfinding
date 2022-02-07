@@ -1,5 +1,3 @@
-from decimal import Decimal, ROUND_HALF_UP
-from math import ceil
 import prompts
 import numpy
 
