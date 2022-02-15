@@ -1,6 +1,6 @@
 Dependencies
 ------------
-This program requires the packages `numpy` and `pygame` to be installed. You may install these packages with `pip` in Python 3's built-in virtual environment (venv) setup by entering the commands below from within the project's directory.
+This program requires the packages `numpy` and `pygame` to be installed. You may install these packages with `pip` in a Python 3 virtual environment (venv) by entering the commands below from within the project's directory.
 
 #### Windows (Command Prompt):
 ```
