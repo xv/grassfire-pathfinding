@@ -64,6 +64,6 @@ class Grid:
 
   def print_grid_description(self):
     print("Generated a grid of size {}x{} and an obstacle percentage of {}% "
-          "with a starting cell at {} and a destination cell at {}"
+          "with a starting\ncell at {} and a destination cell at {}"
           .format(self.rows, self.columns, self.obstacle_percentage,
                   self.start_cell, self.dest_cell))
