@@ -21,7 +21,7 @@ class Grid:
   def init_from_user_input(cls):
     rows = prompts.get_ranged_int("Rows: ", 8)
     columns = prompts.get_ranged_int("Columns: ", 8)
-    obstacles = prompts.get_ranged_int("Obstacles (%): ", 10, 20)
+    obstacles = prompts.get_ranged_int("Obstacles (%): ", 10, 50)
     start_cell = prompts.get_matrix_coords(
       "Starting cell (ROW, COL): ",
       0, rows - 1, 0, columns - 1
