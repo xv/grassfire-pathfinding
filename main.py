@@ -1,10 +1,17 @@
 from grid import Grid
 from grid_gui import GridPlot
 from grassfire import Grassfire
+from prompts import get_yes_no
+
+def show_grid_window():
+  gui = GridPlot(grid.rows, grid.columns, 40)
+  gui.generated_matrix = generated_grid
+  gui.exploration_path = path
+  gui.run()
 
 if __name__ == "__main__":
   print("Generating grid...\n")
-  # grid = Grid(8, 8, 20, (1, 1), (6, 5))
+  # grid = Grid(8, 8, 50, (1, 1), (6, 5))
   grid = Grid.init_from_user_input()
   generated_grid = grid.generate_grid()
   print()
@@ -22,14 +29,15 @@ if __name__ == "__main__":
     print(f"\u2192 Path: {path}\n")
   else:
     print("\u2192 No solution!\n")
-    exit()
+    show_gui = get_yes_no("Do you want to see the grid GUI anyway? (Y/N): ")
+    if show_gui:
+      show_grid_window()
+    else:
+      exit()
 
   print("Plotting path...\n")
   grid.plot_path(generated_grid, path)
   print(generated_grid)
 
-  print("\nPlotting grid in GUI...")
-  grid_gui = GridPlot(grid.rows, grid.columns, 40)
-  grid_gui.generated_matrix = generated_grid
-  grid_gui.exploration_path = path
-  grid_gui.run()
+  print("\nPlotting matrix in GUI...")
+  show_grid_window()

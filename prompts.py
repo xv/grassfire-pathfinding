@@ -45,3 +45,20 @@ def get_matrix_coords(prompt, row_min, row_max, col_min, col_max):
     else:
       break
   return value
+
+def get_yes_no(prompt):
+  while True:
+    value = input(prompt)
+    if any(value.lower() == v for v in ["y", "yes"]):
+      ret = True
+      break
+    elif any(value.lower() == v for v in ["n", "no"]):
+      ret = False
+      break
+    elif value == "":
+      ret = True
+      break
+    else:
+      print("Please answer with either Y or N")
+      continue
+  return ret
