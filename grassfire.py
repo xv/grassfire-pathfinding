@@ -20,8 +20,8 @@ class Grassfire:
     dir_vertical, dir_horizontal = [-1, 1, 0, 0], [0, 0, 1, -1]
     possible_directions = 4
 
-    visited = []
     queue = deque([(start, [start])])
+    visited = [start]
 
     while len(queue) > 0:
       path = queue.popleft()
@@ -31,14 +31,13 @@ class Grassfire:
         # Destination reached
         return path[1]
       
-      visited.append((row, col))
-      
       for i in range(possible_directions):
         cell = (dir_vertical[i] + row, dir_horizontal[i] + col)
         if not self._is_cell_valid(cell) or cell in visited:
           continue
         
         queue.append((cell, [*path[1], cell]))
+        visited.append(cell)
     return []
 
   def run(self, start, dest):
