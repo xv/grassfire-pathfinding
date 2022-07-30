@@ -45,10 +45,10 @@ The generated matrix is passed down to the Pygame module `grid_gui` and the GUI 
 ![gui](/images/gui_01.png)
 
 Pygame GUI Color Legend:
-* ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Starting cell
-* ![#00ff00](https://via.placeholder.com/15/00ff00/000000?text=+) Destination cell
-* ![#505050](https://via.placeholder.com/15/505050/000000?text=+) Obstacle
-* ![#c0c0c0](https://via.placeholder.com/15/c0c0c0/000000?text=+) Path from the starting cell to destination cell
+* ![#ff0000](https://via.placeholder.com/15/ff0000/ff0000.png) Starting cell
+* ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00.png) Destination cell
+* ![#505050](https://via.placeholder.com/15/505050/505050.png) Obstacle
+* ![#c0c0c0](https://via.placeholder.com/15/c0c0c0/c0c0c0.png) Path from the starting cell to destination cell
 
 Legal
 -----
