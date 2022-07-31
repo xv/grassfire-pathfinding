@@ -15,19 +15,19 @@ class Grassfire:
       return False
     return True
 
-  def _find_shortest_path(self, start, dest):
+  def _find_shortest_path(self, start_cell, dest_cell):
     # N(-1,0), S(1,0), E(0,1), W(0,-1)
     dir_vertical, dir_horizontal = [-1, 1, 0, 0], [0, 0, 1, -1]
     possible_directions = 4
 
-    queue = deque([(start, [start])])
-    visited = [start]
+    queue = deque([(start_cell, [start_cell])])
+    visited = [start_cell]
 
     while len(queue) > 0:
       path = queue.popleft()
       row, col = path[0]
       
-      if (row, col) == dest:
+      if (row, col) == dest_cell:
         # Destination reached
         return path[1]
       
@@ -40,5 +40,5 @@ class Grassfire:
         visited.append(cell)
     return []
 
-  def run(self, start, dest):
-    return self._find_shortest_path(start, dest)
+  def run(self, start_cell, dest_cell):
+    return self._find_shortest_path(start_cell, dest_cell)
