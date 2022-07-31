@@ -8,7 +8,7 @@ COLOR_GREEN = (0, 255, 0)
 COLOR_DARK_GREY = (80, 80, 80)
 COLOR_GREY = (192, 192, 192)
 
-class GridPlot(object):
+class GridPlot():
   cells = []
   generated_matrix = []
   exploration_path = []
