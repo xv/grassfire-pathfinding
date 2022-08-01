@@ -11,7 +11,7 @@ def show_grid_window():
 
 if __name__ == "__main__":
   print("Generating grid...\n")
-  # grid = Grid(8, 8, 50, (1, 1), (6, 5))
+  # grid = Grid(8, 8, 20, (1, 1), (6, 5))
   grid = Grid.init_from_user_input()
   generated_grid = grid.generate_grid()
   print()
