@@ -2,8 +2,9 @@ from collections import deque
 from grid import Grid
 
 class Grassfire:
-  def __init__(self, grid):
+  def __init__(self, grid, plot_expansion = False):
     self.grid = grid
+    self.plot_expansion = plot_expansion
 
   def _is_cell_valid(self, cell):
     row, col = cell[0], cell[1]
@@ -38,6 +39,9 @@ class Grassfire:
         
         queue.append((cell, [*path[1], cell]))
         visited.append(cell)
+
+        if self.plot_expansion and cell != dest_cell:
+          self.grid[cell[0]][cell[1]] = Grid.GRID_IND_EXPANSION
     return []
 
   def run(self, start_cell, dest_cell):

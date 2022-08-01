@@ -7,6 +7,7 @@ import pygame
 
 COLOR_BLACK = (0, 0, 0)
 COLOR_WHITE = (255, 255, 255)
+COLOR_YELLOW = (255, 255, 0)
 COLOR_RED = (255, 0, 0)
 COLOR_GREEN = (0, 255, 0)
 COLOR_DARK_GREY = (80, 80, 80)
@@ -17,7 +18,7 @@ class GridPlot():
   generated_matrix = []
   exploration_path = []
 
-  def __init__(self, grid_rows: int, grid_columns: int, block_size: int):
+  def __init__(self, grid_rows, grid_columns, block_size):
     pygame.init()
     pygame.display.set_caption("Grid Plot")
 
@@ -68,10 +69,13 @@ class GridPlot():
     for i, rect in enumerate(self.cells):
       row = rect[0].y // self.block_size
       col = rect[0].x // self.block_size
+      
       if self.generated_matrix[row][col] == Grid.GRID_IND_STARTING_CELL:
         self.cells[i] = (rect[0], COLOR_RED)
       elif self.generated_matrix[row][col] == Grid.GRID_IND_OBSTACLE:
         self.cells[i] = (rect[0], COLOR_DARK_GREY)
+      elif self.generated_matrix[row][col] == Grid.GRID_IND_EXPANSION:
+        self.cells[i] = (rect[0], COLOR_YELLOW)
       elif self.generated_matrix[row][col] == Grid.GRID_IND_PATH:
         self.cells[i] = (rect[0], COLOR_GREY)
       elif self.generated_matrix[row][col] == Grid.GRID_IND_DESTINATION_CELL:
@@ -90,7 +94,7 @@ class GridPlot():
     #
     # This method differs from fill_from_exploration_path() such that the latter
     # only colorizes the starting and destination cells, and the exploration
-    # path
+    # path (obstacles not included)
     self._fill_from_generated_matrix()
 
     # Draws the actual rectangles

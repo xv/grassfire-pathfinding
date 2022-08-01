@@ -8,9 +8,10 @@ class Grid:
   GRID_IND_STARTING_CELL = 1
   GRID_IND_DESTINATION_CELL = 2
   GRID_IND_PATH = 3
+  GRID_IND_EXPANSION = 4
 
-  def __init__(self, rows: int, columns: int, obstacle_percentage: int, 
-               start_cell: tuple, dest_cell: tuple): 
+  def __init__(self, rows, columns, obstacle_percentage, 
+               start_cell, dest_cell): 
     self.rows = rows
     self.columns = columns
     self.obstacle_percentage = obstacle_percentage
