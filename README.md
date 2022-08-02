@@ -42,7 +42,7 @@ Where the numbers in the matrix are represented as:
 ### Pygame GUI
 The generated matrix is passed down to the Pygame module `grid_gui` and the GUI is automatically built based on the received information. Below is an image of the GUI that is generated from the matrix output above.
 
-![gui](/images/gui.png)
+![grid](/images/grid.png)
 
 Pygame GUI Color Legend:
 * ![#ff0000](https://via.placeholder.com/15/ff0000/ff0000.png) Starting cell
