@@ -11,15 +11,15 @@ def show_grid_window():
 
 if __name__ == "__main__":
   print("Generating grid...\n")
-  # grid = Grid(8, 8, 20, (1, 1), (6, 5))
+
   grid = Grid.init_from_user_input()
   generated_grid = grid.generate_grid()
-  print()
-  print(generated_grid)
+
   print()
   grid.print_grid_description()
   
   print("\nSolving...\n")
+  
   algo = Grassfire(generated_grid)
   path = algo.run(grid.start_cell, grid.dest_cell)
   
@@ -35,9 +35,11 @@ if __name__ == "__main__":
     else:
       exit()
 
-  print("Plotting path...\n")
+  print("Plotting path in matrix...\n")
+
   grid.plot_path(generated_grid, path)
   print(generated_grid)
 
   print("\nPlotting matrix in GUI...")
+
   show_grid_window()
