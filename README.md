@@ -54,7 +54,7 @@ Pygame GUI Color Legend:
 * You can modify `main.py` to comment out the line that invokes `Grid.init_from_user_input()` and manually construct the parameters of the `Grid` class if you wish to run a pre-set grid without having to input parameters into the terminal every time the program is run.
     * Example: `grid = Grid(8, 8, 20, (1, 1), (6, 5))`<br>The above will create a matrix of 8 rows and 8 columns, an obstacle concentration of 20%, a starting cell at the 2nd row and 2nd column, and a destination cell at the 7th row and 6th column.
 
-* You can modify `main.py` to enable the plotting of cells the algorithm had visited while searching for the destination cell. This can be done by setting the boolean `plot_expansion` parameter of the `Grassfire` class constructor. If this option is enabled, the value of the matrix element that corresponds to the visited cell will be set to `4` instead of the default `0`.
+* You can modify `main.py` to enable the plotting of cells the algorithm had visited while searching for the destination cell. This can be done by setting the boolean `plot_expansion` parameter of the `Grassfire` class constructor. If this option is enabled, the value of the matrix element that corresponds to the visited cell will be set to `4` instead of the default `0`. The Pygame GUI will also colorize visited cells in yellow.
 
 Legal
 -----
