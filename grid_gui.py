@@ -35,7 +35,7 @@ class GridPlot():
     ]
     pygame.display.set_mode(window_size)
 
-  def _set_grid_rect(self):
+  def _build_grid_rects(self):
     for row in range(self.grid_rows):
       for col in range(self.grid_columns):
         rect = pygame.Rect(
@@ -85,9 +85,9 @@ class GridPlot():
     surface = pygame.display.get_surface()
     surface.fill(COLOR_BLACK)
     
-    # Builds the grid rectangles (blocks) based on the specified number of
+    # Builds the grid rectangles (cells) based on the specified number of
     # rows, columns, and the size of the block
-    self._set_grid_rect()
+    self._build_grid_rects()
 
     # Colorizes the grid cells based on whether they represent a starting cell,
     # destination cell, exploration path or obstacle
@@ -99,6 +99,8 @@ class GridPlot():
 
     # Draws the actual rectangles
     self._draw_grid_rects(surface)
+    
+    pygame.display.flip()
 
     done = False
     while not done:
@@ -109,6 +111,4 @@ class GridPlot():
         elif event.type == pygame.KEYDOWN and \
              event.key == pygame.K_SPACE:
           done = True
-
-      pygame.display.flip()
       self.clock.tick(30)
