@@ -38,30 +38,30 @@ class Grid:
       start_cell, dest_cell
     )
 
-  def _fill_obstacles(self, grid):
+  def _fill_obstacles(self, matrix):
     obstacles = numpy.random.ranf((self.rows, self.columns))
     percentage = self.obstacle_percentage / 100
-    grid[(obstacles <= percentage)] = self.GRID_IND_OBSTACLE
+    matrix[(obstacles <= percentage)] = self.GRID_IND_OBSTACLE
 
-  def _set_starting_cell(self, grid, cell):
+  def _set_starting_cell(self, matrix, cell):
     row, col = cell[0], cell[1]
-    grid[row][col] = self.GRID_IND_STARTING_CELL
+    matrix[row][col] = self.GRID_IND_STARTING_CELL
 
-  def _set_destination_cell(self, grid, cell):
+  def _set_destination_cell(self, matrix, cell):
     row, col = cell[0], cell[1]
-    grid[row][col] = self.GRID_IND_DESTINATION_CELL
+    matrix[row][col] = self.GRID_IND_DESTINATION_CELL
 
-  def generate_grid(self):
-    grid = numpy.full((self.rows, self.columns), self.GRID_IND_DEFAULT)
-    self._fill_obstacles(grid)
-    self._set_starting_cell(grid, self.start_cell)
-    self._set_destination_cell(grid, self.dest_cell)
-    return grid
+  def generate_matrix(self):
+    matrix = numpy.full((self.rows, self.columns), self.GRID_IND_DEFAULT)
+    self._fill_obstacles(matrix)
+    self._set_starting_cell(matrix, self.start_cell)
+    self._set_destination_cell(matrix, self.dest_cell)
+    return matrix
 
-  def plot_path(self, grid, path):
+  def plot_path(self, matrix, path):
     for coord in path[1:-1]: # Skip start and dest cells
       row, col = coord[0], coord[1]
-      grid[row][col] = Grid.GRID_IND_PATH
+      matrix[row][col] = Grid.GRID_IND_PATH
 
   def print_grid_description(self):
     print("Generated a grid of size {}x{} and an obstacle percentage of {}% "

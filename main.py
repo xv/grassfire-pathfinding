@@ -5,21 +5,21 @@ from prompts import get_yes_no
 
 def show_grid_window():
   gui = GridPlot(grid.rows, grid.columns, 40)
-  gui.generated_matrix = generated_grid
+  gui.generated_matrix = matrix
   gui.run()
 
 if __name__ == "__main__":
   print("Generating grid...\n")
 
   grid = Grid.init_from_user_input()
-  generated_grid = grid.generate_grid()
+  matrix = grid.generate_matrix()
 
   print()
   grid.print_grid_description()
   
   print("\nSolving...\n")
   
-  algo = Grassfire(generated_grid)
+  algo = Grassfire(matrix)
   path = algo.run(grid.start_cell, grid.dest_cell)
   
   path_size = len(path)
@@ -36,8 +36,8 @@ if __name__ == "__main__":
 
   print("Plotting path in matrix...\n")
 
-  grid.plot_path(generated_grid, path)
-  print(generated_grid)
+  grid.plot_path(matrix, path)
+  print(matrix)
 
   print("\nPlotting matrix in GUI...")
 

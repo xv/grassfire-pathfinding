@@ -2,17 +2,17 @@ from collections import deque
 from grid import Grid
 
 class Grassfire:
-  def __init__(self, grid, plot_expansion = False):
-    self.grid = grid
+  def __init__(self, matrix, plot_expansion = False):
+    self.matrix = matrix
     self.plot_expansion = plot_expansion
 
   def _is_cell_valid(self, cell):
     row, col = cell[0], cell[1]
-    if row < 0 or row >= len(self.grid) or \
-       col < 0 or col >= len(self.grid[row]):
+    if row < 0 or row >= len(self.matrix) or \
+       col < 0 or col >= len(self.matrix[row]):
       return False
 
-    if self.grid[row][col] == Grid.GRID_IND_OBSTACLE:
+    if self.matrix[row][col] == Grid.GRID_IND_OBSTACLE:
       return False
     return True
 
@@ -41,7 +41,7 @@ class Grassfire:
         visited.append(cell)
 
         if self.plot_expansion and cell != dest_cell:
-          self.grid[cell[0]][cell[1]] = Grid.GRID_IND_EXPANSION
+          self.matrix[cell[0]][cell[1]] = Grid.GRID_IND_EXPANSION
     return []
 
   def run(self, start_cell, dest_cell):
