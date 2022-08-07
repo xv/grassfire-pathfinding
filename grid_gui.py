@@ -62,6 +62,9 @@ class GridPlot():
       pygame.draw.rect(surface, cell.color, cell.rect)
 
   def _fill_from_generated_matrix(self):
+    if len(self.generated_matrix) == 0:
+      return
+      
     for cell in self.cell_rects:
       row = cell.rect.y // self.block_size
       col = cell.rect.x // self.block_size
