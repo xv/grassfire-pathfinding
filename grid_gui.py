@@ -32,7 +32,6 @@ class GridPlot():
 
     self.cell_rects = []
     self.generated_matrix = []
-    self.exploration_path = []
 
     self._set_window_size()
     self.clock = pygame.time.Clock()
@@ -62,22 +61,6 @@ class GridPlot():
     for cell in self.cell_rects:
       pygame.draw.rect(surface, cell.color, cell.rect)
 
-  def _fill_from_exploration_path(self):
-    for cell in self.cell_rects:
-      row = cell.rect.y // self.block_size
-      col = cell.rect.x // self.block_size
-      for j, coord in enumerate(self.exploration_path):
-        if row == coord[0] and col == coord[1]:
-          if j == 0:
-            # Starting cell
-            cell.color = COLOR_RED
-          elif j == len(self.exploration_path) - 1:
-            # Destination cell
-            cell.color = COLOR_GREEN
-          else:
-            # Exploration path
-            cell.color = COLOR_GREY
-  
   def _fill_from_generated_matrix(self):
     for cell in self.cell_rects:
       row = cell.rect.y // self.block_size

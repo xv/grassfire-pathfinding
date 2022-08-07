@@ -6,7 +6,6 @@ from prompts import get_yes_no
 def show_grid_window():
   gui = GridPlot(grid.rows, grid.columns, 40)
   gui.generated_matrix = generated_grid
-  gui.exploration_path = path
   gui.run()
 
 if __name__ == "__main__":
