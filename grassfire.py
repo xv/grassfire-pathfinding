@@ -16,7 +16,7 @@ class Grassfire:
       return False
     return True
 
-  def _find_shortest_path(self, start_cell, dest_cell):
+  def find_path(self, start_cell, dest_cell):
     # N(-1,0), S(1,0), E(0,1), W(0,-1)
     dir_vertical, dir_horizontal = [-1, 1, 0, 0], [0, 0, 1, -1]
     possible_directions = 4
@@ -43,6 +43,3 @@ class Grassfire:
         if self.plot_expansion and cell != dest_cell:
           self.matrix[cell[0]][cell[1]] = Grid.GRID_IND_EXPANSION
     return []
-
-  def run(self, start_cell, dest_cell):
-    return self._find_shortest_path(start_cell, dest_cell)

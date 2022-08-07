@@ -20,7 +20,7 @@ if __name__ == "__main__":
   print("\nSolving...\n")
   
   algo = Grassfire(matrix)
-  path = algo.run(grid.start_cell, grid.dest_cell)
+  path = algo.find_path(grid.start_cell, grid.dest_cell)
   
   path_size = len(path)
   if path_size > 0:
