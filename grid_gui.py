@@ -13,11 +13,15 @@ COLOR_GREEN = (0, 255, 0)
 COLOR_DARK_GREY = (80, 80, 80)
 COLOR_GREY = (192, 192, 192)
 
-class GridPlot():
-  cell_rects = []
-  generated_matrix = []
-  exploration_path = []
+class Cell:
+  def __init__(self, rect, color):
+    self.rect = rect
+    self.color = color
 
+  def __str__(self):
+    return f"({self.rect}, {self.color})"
+
+class GridPlot():
   def __init__(self, grid_rows, grid_columns, block_size):
     pygame.init()
     pygame.display.set_caption("Grid Plot")
@@ -25,6 +29,11 @@ class GridPlot():
     self.grid_rows = grid_rows
     self.grid_columns = grid_columns
     self.block_size = block_size
+
+    self.cell_rects = []
+    self.generated_matrix = []
+    self.exploration_path = []
+
     self._set_window_size()
     self.clock = pygame.time.Clock()
 
@@ -35,6 +44,10 @@ class GridPlot():
     ]
     pygame.display.set_mode(window_size)
 
+  def add_grid_cell(self, rect, color):
+    cell = Cell(rect, color)
+    self.cell_rects.append(cell)
+
   def _build_grid_rects(self):
     for row in range(self.grid_rows):
       for col in range(self.grid_columns):
@@ -43,43 +56,43 @@ class GridPlot():
           row * (self.block_size + 1),
           self.block_size, self.block_size
         )
-        self.cell_rects.append((rect, COLOR_WHITE))
+        self.add_grid_cell(rect, COLOR_WHITE)
   
   def _draw_grid_rects(self, surface):
-    for grid_rect, color in self.cell_rects:
-      pygame.draw.rect(surface, color, grid_rect)
+    for cell in self.cell_rects:
+      pygame.draw.rect(surface, cell.color, cell.rect)
 
   def _fill_from_exploration_path(self):
-    for i, rect in enumerate(self.cell_rects):
-      row = rect[0].y // self.block_size
-      col = rect[0].x // self.block_size
+    for cell in self.cell_rects:
+      row = cell.rect.y // self.block_size
+      col = cell.rect.x // self.block_size
       for j, coord in enumerate(self.exploration_path):
         if row == coord[0] and col == coord[1]:
           if j == 0:
             # Starting cell
-            self.cell_rects[i] = (rect[0], COLOR_RED)
+            cell.color = COLOR_RED
           elif j == len(self.exploration_path) - 1:
             # Destination cell
-            self.cell_rects[i] = (rect[0], COLOR_GREEN)
+            cell.color = COLOR_GREEN
           else:
             # Exploration path
-            self.cecell_rectslls[i] = (rect[0], COLOR_GREY)
+            cell.color = COLOR_GREY
   
   def _fill_from_generated_matrix(self):
-    for i, rect in enumerate(self.cell_rects):
-      row = rect[0].y // self.block_size
-      col = rect[0].x // self.block_size
+    for cell in self.cell_rects:
+      row = cell.rect.y // self.block_size
+      col = cell.rect.x // self.block_size
       
       if self.generated_matrix[row][col] == Grid.GRID_IND_STARTING_CELL:
-        self.cell_rects[i] = (rect[0], COLOR_RED)
+        cell.color = COLOR_RED
       elif self.generated_matrix[row][col] == Grid.GRID_IND_OBSTACLE:
-        self.cell_rects[i] = (rect[0], COLOR_DARK_GREY)
+        cell.color = COLOR_DARK_GREY
       elif self.generated_matrix[row][col] == Grid.GRID_IND_EXPANSION:
-        self.cell_rects[i] = (rect[0], COLOR_YELLOW)
+        cell.color = COLOR_YELLOW
       elif self.generated_matrix[row][col] == Grid.GRID_IND_PATH:
-        self.cell_rects[i] = (rect[0], COLOR_GREY)
+        cell.color = COLOR_GREY
       elif self.generated_matrix[row][col] == Grid.GRID_IND_DESTINATION_CELL:
-        self.cell_rects[i] = (rect[0], COLOR_GREEN)
+        cell.color = COLOR_GREEN
 
   def run(self):
     surface = pygame.display.get_surface()
@@ -92,9 +105,8 @@ class GridPlot():
     # Colorizes the grid cells based on whether they represent a starting cell,
     # destination cell, exploration path or obstacle
     #
-    # This method differs from fill_from_exploration_path() such that the latter
-    # only colorizes the starting and destination cells, and the exploration
-    # path (obstacles not included)
+    # Alternatively, _fill_from_exploration_path() can be used to colorize
+    # only the starting and destination cells, and the path between them
     self._fill_from_generated_matrix()
 
     # Draws the actual rectangles
