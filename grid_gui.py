@@ -14,7 +14,7 @@ COLOR_DARK_GREY = (80, 80, 80)
 COLOR_GREY = (192, 192, 192)
 
 class GridPlot():
-  cells = []
+  cell_rects = []
   generated_matrix = []
   exploration_path = []
 
@@ -43,43 +43,43 @@ class GridPlot():
           row * (self.block_size + 1),
           self.block_size, self.block_size
         )
-        self.cells.append((rect, COLOR_WHITE))
+        self.cell_rects.append((rect, COLOR_WHITE))
   
   def _draw_grid_rects(self, surface):
-    for grid_rect, color in self.cells:
+    for grid_rect, color in self.cell_rects:
       pygame.draw.rect(surface, color, grid_rect)
 
   def _fill_from_exploration_path(self):
-    for i, rect in enumerate(self.cells):
+    for i, rect in enumerate(self.cell_rects):
       row = rect[0].y // self.block_size
       col = rect[0].x // self.block_size
       for j, coord in enumerate(self.exploration_path):
         if row == coord[0] and col == coord[1]:
           if j == 0:
             # Starting cell
-            self.cells[i] = (rect[0], COLOR_RED)
+            self.cell_rects[i] = (rect[0], COLOR_RED)
           elif j == len(self.exploration_path) - 1:
             # Destination cell
-            self.cells[i] = (rect[0], COLOR_GREEN)
+            self.cell_rects[i] = (rect[0], COLOR_GREEN)
           else:
             # Exploration path
-            self.cells[i] = (rect[0], COLOR_GREY)
+            self.cecell_rectslls[i] = (rect[0], COLOR_GREY)
   
   def _fill_from_generated_matrix(self):
-    for i, rect in enumerate(self.cells):
+    for i, rect in enumerate(self.cell_rects):
       row = rect[0].y // self.block_size
       col = rect[0].x // self.block_size
       
       if self.generated_matrix[row][col] == Grid.GRID_IND_STARTING_CELL:
-        self.cells[i] = (rect[0], COLOR_RED)
+        self.cell_rects[i] = (rect[0], COLOR_RED)
       elif self.generated_matrix[row][col] == Grid.GRID_IND_OBSTACLE:
-        self.cells[i] = (rect[0], COLOR_DARK_GREY)
+        self.cell_rects[i] = (rect[0], COLOR_DARK_GREY)
       elif self.generated_matrix[row][col] == Grid.GRID_IND_EXPANSION:
-        self.cells[i] = (rect[0], COLOR_YELLOW)
+        self.cell_rects[i] = (rect[0], COLOR_YELLOW)
       elif self.generated_matrix[row][col] == Grid.GRID_IND_PATH:
-        self.cells[i] = (rect[0], COLOR_GREY)
+        self.cell_rects[i] = (rect[0], COLOR_GREY)
       elif self.generated_matrix[row][col] == Grid.GRID_IND_DESTINATION_CELL:
-        self.cells[i] = (rect[0], COLOR_GREEN)
+        self.cell_rects[i] = (rect[0], COLOR_GREEN)
 
   def run(self):
     surface = pygame.display.get_surface()
