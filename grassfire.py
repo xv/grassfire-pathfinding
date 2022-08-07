@@ -3,10 +3,26 @@ from grid import Grid
 
 class Grassfire:
   def __init__(self, matrix, plot_expansion = False):
+    '''
+    Initializes the Grassfire class.
+
+    Parameters:
+      matrix: The generated matrix to run the algorithm on.
+      plot_expansion: If true, values of matrix indices will be updated to
+                      represent cells that have been visited during the
+                      algorithm's runtime.
+    '''
     self.matrix = matrix
     self.plot_expansion = plot_expansion
 
   def _is_cell_valid(self, cell):
+    '''
+    Validates a cell by checking its boundaries in the matrix and whether it
+    represents an obstacle (obstacles are not valid).
+
+    Returns:
+      True if the cell is valid; False otherwise.
+    '''
     row, col = cell[0], cell[1]
     if row < 0 or row >= len(self.matrix) or \
        col < 0 or col >= len(self.matrix[row]):
@@ -17,6 +33,18 @@ class Grassfire:
     return True
 
   def find_path(self, start_cell, dest_cell):
+    '''
+    Runs the algorithm and attempts to find a path from the starting cell to
+    the destination cell.
+
+    Parameters:
+      start_cell: The row and column values of the starting cell.
+      dest_cell: The row and column values of the destination cell.
+
+    Returns:
+      If a path is found, a list containing tuples of row and column values
+      will be returned; otherwise, an empty list is returned.
+    '''
     # N(-1,0), S(1,0), E(0,1), W(0,-1)
     dir_vertical, dir_horizontal = [-1, 1, 0, 0], [0, 0, 1, -1]
     possible_directions = 4

@@ -15,6 +15,13 @@ COLOR_GREY = (192, 192, 192)
 
 class Cell:
   def __init__(self, rect, color):
+    '''
+    Initializes the Cell class.
+
+    Parameters:
+      rect: Rectangle of the grid cell.
+      color: An RGB value to associate with the grid cell.
+    '''
     self.rect = rect
     self.color = color
 
@@ -22,12 +29,21 @@ class Cell:
     return f"({self.rect}, {self.color})"
 
 class GridPlot():
-  def __init__(self, grid_rows, grid_columns, block_size):
+  def __init__(self, rows, columns, block_size):
+    '''
+    Initializes the GridPlot class.
+
+    Parameters:
+      rows: Number of rows in the grid.
+      columns: Number of columns in the grid.
+      block_size: The size of the grid cell. This value cannot be less than
+                  either the number of rows or number of columns.
+    '''
     pygame.init()
     pygame.display.set_caption("Grid Plot")
 
-    self.grid_rows = grid_rows
-    self.grid_columns = grid_columns
+    self.rows = rows
+    self.columns = columns
     self.block_size = block_size
 
     self.cell_rects = []
@@ -37,19 +53,34 @@ class GridPlot():
     self.clock = pygame.time.Clock()
 
   def _set_window_size(self):
+    '''
+    Automatically sets the window size according the number of rows and
+    columns.
+    '''
     window_size = [
-      (self.block_size * self.grid_columns) + (self.grid_columns - 1),
-      (self.block_size * self.grid_rows) + (self.grid_rows - 1)
+      (self.block_size * self.columns) + (self.columns - 1),
+      (self.block_size * self.rows) + (self.rows - 1)
     ]
     pygame.display.set_mode(window_size)
 
   def add_grid_cell(self, rect, color):
+    '''
+    Appends a new Cell object to the list of grid cells.
+
+    Parameters:
+      rect: Rectangle of the grid cell.
+      color: An RGB value to associate with the grid cell.
+    '''
     cell = Cell(rect, color)
     self.cell_rects.append(cell)
 
-  def _build_grid_rects(self):
-    for row in range(self.grid_rows):
-      for col in range(self.grid_columns):
+  def _build_grid(self):
+    '''
+    Builds each grid cell based on the number of rows and columns, and its
+    position within in the grid.
+    '''
+    for row in range(self.rows):
+      for col in range(self.columns):
         rect = pygame.Rect(
           col * (self.block_size + 1),
           row * (self.block_size + 1),
@@ -58,13 +89,24 @@ class GridPlot():
         self.add_grid_cell(rect, COLOR_WHITE)
   
   def _draw_grid_rects(self, surface):
+    '''
+    Draws the rectangles of each grid cell on screen.
+
+    Parameters:
+      surface: Pygame's drawing surface.
+    '''
     for cell in self.cell_rects:
       pygame.draw.rect(surface, cell.color, cell.rect)
 
-  def _fill_from_generated_matrix(self):
+  def _colorize_from_matrix(self):
+    '''
+    Colorizes the grid cells according to data from the generated matrix to
+    represents starting and destination cells, obstacles, and the path from
+    the starting cell to the destination cell.
+    '''
     if len(self.generated_matrix) == 0:
       return
-      
+    
     for cell in self.cell_rects:
       row = cell.rect.y // self.block_size
       col = cell.rect.x // self.block_size
@@ -81,21 +123,14 @@ class GridPlot():
         cell.color = COLOR_GREEN
 
   def run(self):
+    '''
+    Shows the GUI.
+    '''
     surface = pygame.display.get_surface()
     surface.fill(COLOR_BLACK)
     
-    # Builds the grid rectangles (cells) based on the specified number of
-    # rows, columns, and the size of the block
-    self._build_grid_rects()
-
-    # Colorizes the grid cells based on whether they represent a starting cell,
-    # destination cell, exploration path or obstacle
-    #
-    # Alternatively, _fill_from_exploration_path() can be used to colorize
-    # only the starting and destination cells, and the path between them
-    self._fill_from_generated_matrix()
-
-    # Draws the actual rectangles
+    self._build_grid()
+    self._colorize_from_matrix()
     self._draw_grid_rects(surface)
     
     pygame.display.flip()
