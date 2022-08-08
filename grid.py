@@ -7,8 +7,8 @@ class Grid:
   GRID_IND_OBSTACLE = -1
   GRID_IND_STARTING_CELL = 1
   GRID_IND_DESTINATION_CELL = 2
-  GRID_IND_PATH = 3
-  GRID_IND_EXPANSION = 4
+  GRID_IND_EXPANSION = 3
+  GRID_IND_PATH = 4
 
   def __init__(self, rows, columns, obstacle_percentage, 
                start_cell, dest_cell):

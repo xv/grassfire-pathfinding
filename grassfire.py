@@ -2,7 +2,7 @@ from collections import deque
 from grid import Grid
 
 class Grassfire:
-  def __init__(self, matrix, plot_expansion = False):
+  def __init__(self, matrix, plot_expansion = True):
     '''
     Initializes the Grassfire class.
 
