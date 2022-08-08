@@ -104,7 +104,7 @@ class GridPlot():
     represents starting and destination cells, obstacles, and the path from
     the starting cell to the destination cell.
     '''
-    if len(self.generated_matrix) == 0:
+    if not self.generated_matrix:
       return
     
     for cell in self.cell_rects:

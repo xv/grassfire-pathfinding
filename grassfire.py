@@ -52,7 +52,7 @@ class Grassfire:
     queue = deque([(start_cell, [start_cell])])
     visited = [start_cell]
 
-    while len(queue) > 0:
+    while queue:
       path = queue.popleft()
       row, col = path[0]
       
