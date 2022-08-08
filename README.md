@@ -45,10 +45,10 @@ The generated matrix is passed down to the Pygame module `grid_gui` and the GUI 
 ![grid](/images/grid.png)
 
 Pygame GUI Color Legend:
-* ![#ff0000](https://via.placeholder.com/15/ff0000/ff0000.png) Starting cell
-* ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00.png) Destination cell
-* ![#505050](https://via.placeholder.com/15/505050/505050.png) Obstacle
-* ![#c0c0c0](https://via.placeholder.com/15/c0c0c0/c0c0c0.png) Path from the starting cell to destination cell
+* ![#ff0000](https://placehold.co/15x15/ff0000/ff0000.svg) Starting cell
+* ![#00ff00](https://placehold.co/15x15/00ff00/00ff00.svg) Destination cell
+* ![#505050](https://placehold.co/15x15/505050/505050.svg) Obstacle
+* ![#c0c0c0](https://placehold.co/15x15/c0c0c0/c0c0c0.svg) Path from the starting cell to destination cell
 
 ### Customization
 * You can modify `main.py` to comment out the line that invokes `Grid.init_from_user_input()` and manually construct the parameters of the `Grid` class if you wish to run a pre-set grid without having to input parameters into the terminal every time the program is run.
