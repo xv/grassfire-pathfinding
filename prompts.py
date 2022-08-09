@@ -1,4 +1,15 @@
-def get_ranged_int(prompt, min, max=None):
+def get_ranged_int(prompt, min, max = None):
+  '''
+  Prompts the user to input an integer between a minimum and a maximum.
+
+  Parameters:
+    prompt: A message to display for the prompt.
+    min: Minimum integer input.
+    max: Maximum integer input.
+
+  Returns:
+    Integer.
+  '''
   while True:
     try:
       value = int(input(prompt))
@@ -17,6 +28,20 @@ def get_ranged_int(prompt, min, max=None):
   return value
 
 def get_matrix_coords(prompt, row_min, row_max, col_min, col_max):
+  '''
+  Prompts the user to input two comma separated integers to represent the 2D
+  coordinates of a matrix element.
+
+  Parameters:
+    prompt: A message to display for the prompt.
+    row_min: Minimum row value allowed.
+    row_max: Maximum row value allowed.
+    col_min: Minimum column value allowed.
+    col_min: Maximum column value allowed.
+
+  Returns:
+    Tuple containing row and column input.
+  '''
   while True:
     try:
       value = tuple(int(i) for i in input(prompt).split(","))
@@ -47,6 +72,15 @@ def get_matrix_coords(prompt, row_min, row_max, col_min, col_max):
   return value
 
 def get_yes_no(prompt):
+  '''
+  Prompts the user to input a case-insensitive "y", "yes", "n" or "no".
+
+  Parameters:
+    prompt: A message to display for the prompt.
+
+  Returns:
+    Boolean; True if input is "y" or "yes, False if input is "n" or "no"
+  '''
   while True:
     value = input(prompt)
     if any(value.lower() == v for v in ["y", "yes"]):
